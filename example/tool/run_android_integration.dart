@@ -34,13 +34,14 @@ Future<void> main(List<String> arguments) async {
     return;
   }
   final example = File.fromUri(Platform.script).parent.parent;
+  final flutterLauncher = Platform.isWindows ? 'flutter.bat' : 'flutter';
   final flutterCandidate = File(
-    '${File(Platform.resolvedExecutable).parent.parent.parent.parent.path}/flutter',
+    '${File(Platform.resolvedExecutable).parent.parent.parent.parent.path}/$flutterLauncher',
   );
   final flutter =
       options['--flutter'] ??
       Platform.environment['FLUTTER'] ??
-      (flutterCandidate.existsSync() ? flutterCandidate.path : 'flutter');
+      (flutterCandidate.existsSync() ? flutterCandidate.path : flutterLauncher);
   final sdk =
       Platform.environment['ANDROID_SDK_ROOT'] ??
       Platform.environment['ANDROID_HOME'];
@@ -135,8 +136,9 @@ Future<void> main(List<String> arguments) async {
       '--android-skip-build-dependency-validation',
     ], 'native-app-build.log');
     if (exitCode != 0) return;
+    final gradleLauncher = Platform.isWindows ? 'gradlew.bat' : 'gradlew';
     exitCode = await execute(
-      '${example.path}/android/gradlew',
+      '${example.path}/android/$gradleLauncher',
       [
         ':app:assembleDebugAndroidTest',
         '-Ptarget=lib/main.dart',
