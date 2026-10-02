@@ -70,9 +70,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Running on: $_platformVersion\n'),
+              Text(
+                'Running on: $_platformVersion\n',
+                key: const ValueKey('platform-version'),
+              ),
               Builder(
                 builder: (context) => TextButton(
+                  key: const ValueKey('open-accessibility'),
                   onPressed: () =>
                       Navigator.of(context).pushNamed('/accessibility'),
                   child: const Text('Accessibility protection'),

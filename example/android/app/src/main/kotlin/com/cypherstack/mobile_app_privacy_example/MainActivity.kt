@@ -7,5 +7,6 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         flutterEngine.registerExamplePlatformChannel()
+        flutterEngine.registerPrivacyTestChannel(this)
     }
 }

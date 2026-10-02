@@ -52,15 +52,21 @@ class _AccessibilityPageState extends State<AccessibilityPage> {
       child: Column(
         children: [
           const Text('public-probe'),
-          Text(status),
+          Text(status, key: const ValueKey('filtering-state')),
           const Text('seed-probe'),
-          TextField(controller: controller, autofocus: true),
+          TextField(
+            key: const ValueKey('sensitive-input'),
+            controller: controller,
+            autofocus: true,
+          ),
           const AccessibilitySensitive(child: Text('fallback-probe')),
           TextButton(
+            key: const ValueKey('disable-filtering'),
             onPressed: () => setProtection(false),
             child: const Text('Disable protection'),
           ),
           TextButton(
+            key: const ValueKey('enable-filtering'),
             onPressed: () => setProtection(true),
             child: const Text('Enable protection'),
           ),

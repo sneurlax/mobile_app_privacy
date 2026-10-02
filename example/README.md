@@ -29,7 +29,13 @@ Run widget tests from this directory with `flutter test test`. To run Android
 instrumentation tests, start a disposable API 33 or 34 emulator, then:
 
 ```sh
-flutter build apk --debug --target-platform android-x64 --android-skip-build-dependency-validation
+flutter build apk --debug --target lib/main.dart --target-platform android-x64 --android-skip-build-dependency-validation
 cd android
-./gradlew :app:connectedDebugAndroidTest -Ptarget-platform=android-x64 -PskipDependencyChecks=true
+./gradlew :app:connectedDebugAndroidTest -Ptarget=lib/main.dart -Ptarget-platform=android-x64 -PskipDependencyChecks=true
+```
+
+For Flutter integration tests, boot a disposable API 33/34 emulator and run:
+
+```sh
+dart run tool/run_android_integration.dart --device <device-id> --native-regressions
 ```
