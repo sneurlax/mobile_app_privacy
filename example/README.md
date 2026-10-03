@@ -34,8 +34,16 @@ cd android
 ./gradlew :app:connectedDebugAndroidTest -Ptarget=lib/main.dart -Ptarget-platform=android-x64 -PskipDependencyChecks=true
 ```
 
-For Flutter integration tests, boot a disposable API 33/34 emulator and run:
+From `example/`, run standard tests on API 33 and 34:
+
+```sh
+flutter test integration_test -d <emulator-serial>
+```
+
+For actual service events and ADB lifecycle checks, use a disposable emulator:
 
 ```sh
 dart run tool/run_android_integration.dart --device <device-id> --native-regressions
 ```
+
+`extended_test/` requires this driver; `--native-regressions` also runs the existing activity/engine tests.

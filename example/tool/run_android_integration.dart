@@ -117,7 +117,7 @@ Future<void> main(List<String> arguments) async {
       '-d',
       serial,
       '--driver=test_driver/android_integration_driver.dart',
-      '--target=integration_test/android_privacy_test.dart',
+      '--target=extended_test/android_accessibility_test.dart',
       '--android-skip-build-dependency-validation',
     ], 'flutter-drive.log');
     if (exitCode != 0 || !nativeRegressions) return;
