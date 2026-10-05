@@ -50,7 +50,8 @@ class MobileAppPrivacyPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             "getPlatformVersion" -> result.success("Android ${android.os.Build.VERSION.RELEASE}")
             "enableOverlay" -> {
                 val iconAsset = call.argument<Map<String, Any>>("iconAsset")
-                val color = call.argument<Long>("color")?.toInt() ?: Color.argb(255, 0, 255, 0)
+                // The codec decodes ARGB values as Integer or Long depending on their size.
+                val color = call.argument<Number>("color")?.toInt() ?: Color.argb(255, 0, 255, 0)
                 enableOverlay(color, iconAsset)
                 result.success(null)
             }

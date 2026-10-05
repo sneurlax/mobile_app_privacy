@@ -1,5 +1,7 @@
 ## Unreleased
 
+* Fix Android `enableOverlay` failing for colors with alpha below `0x80`,
+  including transparent black, when the method channel decodes them as 32-bit integers.
 * Keep Android accessibility protection active while any attached plugin instance
   requests it, including when another instance attaches with protection disabled.
 * **Breaking:** Remove `AccessibilitySensitive` from the package API. The example
